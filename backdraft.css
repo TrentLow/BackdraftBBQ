@@ -3,7 +3,7 @@
   overflow: hidden;
 }
 .menu .dropbtn {
-  font-size: 30px;
+  font-size: 24px;
   border: none;
   outline: none;
   color: white;
@@ -39,7 +39,7 @@
 .nav-link {
 font-family: "Comic Sans MS", sans-serif;
 font-weight: bold;
-font-size: 30px;
+font-size: 24px;
 color: white;
 text-decoration: none;
 }
@@ -55,10 +55,7 @@ and (orientation: landscape) {
 
 main {
 margin: auto;
-padding-top: 210px;
-margin-bottom: 30px;
 width: 100%;
-box-shadow: 6px 10px 10px gray;
 position: relative;
 bottom: 100px;
 display: flex;
@@ -68,7 +65,6 @@ align-items: center;
 section {
 text-align: center;
 padding: 16px;
-display: flex;
 flex-direction: column;
 align-items: center;
 width: 100%
@@ -78,7 +74,7 @@ width: 50%;
 }
 section h1 {
 padding: 25px;
-font-size: 35px;
+font-size: 64px;
 }
 body {
 background-color: firebrick;
@@ -88,7 +84,7 @@ font-family: "Comic Sans MS", sans-serif;
 padding: 40px;
 }
 #hog {
-border-style: solid;
+  border-style: solid;
 }
 
 h2 {
@@ -108,26 +104,37 @@ font-weight: bold;
 background-color: white;
 border-style: solid;
 width: auto;
-margin: 300px
+margin: 10%;
 }
 #about {
 background-color: white;
 border-style: solid;
 width: auto;
-margin: 300px
+margin: 10%;
+margin-top: 15px;
 }
 #gallery {
 background-color: white;
+display: flex;
 border-style: solid;
 width: auto;
-margin: 300px
+margin: 10%;
 }
 #contact {
 background-color: white;
 border-style: solid;
 width: auto;
-margin: 300px
+margin: 10%;
 }
 #bdburger {
   border-style: solid;
+}
+#home {
+width: auto;
+margin: 15px auto;
+margin-top: 65px;
+display: block;
+}
+#about {
+  display: flex;
 }
