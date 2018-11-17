@@ -70,7 +70,7 @@ align-items: center;
 width: 100%
 }
 section p {
-display: flex;
+width: 50%;
 }
 section h1 {
 padding: 25px;
