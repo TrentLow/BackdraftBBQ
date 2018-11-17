@@ -74,7 +74,7 @@ width: 50%;
 }
 section h1 {
 padding: 25px;
-font-size: 64px;
+font-size: 50px;
 }
 body {
 background-color: firebrick;
@@ -111,7 +111,7 @@ background-color: white;
 border-style: solid;
 width: auto;
 margin: 10%;
-margin-top: 15px;
+margin-top: 10px;
 }
 #gallery {
 background-color: white;
@@ -125,6 +125,7 @@ background-color: white;
 border-style: solid;
 width: auto;
 margin: 10%;
+display: flex;
 }
 #bdburger {
   border-style: solid;
