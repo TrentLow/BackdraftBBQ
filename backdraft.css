@@ -71,6 +71,7 @@ width: 100%
 }
 section p {
 width: 50%;
+display: flex;
 }
 section h1 {
 padding: 25px;
