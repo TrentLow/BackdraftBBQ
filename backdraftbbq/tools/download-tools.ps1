@@ -1,0 +1,1 @@
+wget http://central.maven.org/maven2/io/swagger/codegen/v3/swagger-codegen-cli/3.0.5/swagger-codegen-cli-3.0.5.jar -Outfile ./tools/swagger-codegen-cli.jar

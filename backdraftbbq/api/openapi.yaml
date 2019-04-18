@@ -1,0 +1,184 @@
+openapi: 3.0.1
+info:
+  version: 1.0.0
+  title: Backdraft BBQ API
+  description: >-
+    Add, retrieve, and delete menu items or gallery images for Backdraft BBQ
+    website
+  license:
+    name: UNLICENSED
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /menu_item:
+    get:
+      summary: Get all menu items
+      operationId: getMenuItems
+      tags:
+        - menu_item
+      responses:
+        '201':
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MenuItem'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Adds a new menu item
+      operationId: addMenuItem
+      tags:
+        - menu_item
+      requestBody:
+        description: The menu item details
+        required: true
+        x-name: body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MenuItem'
+      responses:
+        '201':
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MenuItem'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  '/menu_item/{id}':
+    delete:
+      summary: Delete the specified menu item
+      operationId: deleteMenuitem
+      tags:
+        - menu_item
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: The id of the menu item to delete
+          required: true
+      responses:
+        '201':
+          description: Success Response
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /gallery:
+    get:
+      summary: Get all gallery iamges
+      operationId: getGalleryImages
+      tags:
+        - gallery
+      responses:
+        '201':
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GalleryImage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Adds a new gallery image
+      operationId: addGalleryImage
+      tags:
+        - gallery
+      requestBody:
+        description: The gallery image
+        required: true
+        x-name: body
+        content:
+          image/png:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '201':
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GalleryImage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  '/gallery/{id}':
+    delete:
+      summary: Delete the specified menu item
+      operationId: deleteGalleryImage
+      tags:
+        - gallery
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: The id of the gallery image to delete
+          required: true
+      responses:
+        '201':
+          description: Success Response
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    MenuItem:
+      required:
+        - id
+        - title
+        - price
+      properties:
+        id:
+          type: integer
+        price:
+          type: string
+        title:
+          type: string
+    GalleryImage:
+      required:
+        - id
+        - url
+      properties:
+        id:
+          type: integer
+        url:
+          type: string
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

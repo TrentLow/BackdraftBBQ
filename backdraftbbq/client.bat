@@ -1,0 +1,1 @@
+npx openapi-generator generate -i api/openapi.yaml -g javascript -o src/generated
