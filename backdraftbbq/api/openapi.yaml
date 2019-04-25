@@ -156,6 +156,7 @@ components:
         - id
         - title
         - price
+        - catagory
       properties:
         id:
           type: integer
@@ -163,6 +164,16 @@ components:
           type: string
         title:
           type: string
+        category:
+          type: string
+          enum:
+            - appetizers
+            - sides
+            - breakfast
+            - kids
+            - baskets
+            - entrees
+            - beverages
     GalleryImage:
       required:
         - id

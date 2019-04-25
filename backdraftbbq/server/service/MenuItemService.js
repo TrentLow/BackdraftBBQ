@@ -39,7 +39,7 @@ exports.deleteMenuitem = function(id) {
  **/
 exports.getMenuItems = function() {
   return new Promise(function(resolve, reject) {
-    var examples = [{title: "burger", price: 1.75},{title: "fish", price: 2.0},{title: "fries", price: 10.75},];
+    var examples = [{category: "appetizers", title: "burger", price: 1.75},{category: "kids", title: "fish", price: 2.0},{category: "beverages", title: "fries", price: 10.75},];
     if (Object.keys(examples).length > 0) {
       resolve(examples);
     } else {

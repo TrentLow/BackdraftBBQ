@@ -1,33 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Navbar from './components/navbar'
 import './App.css';
+import MenuList from "./components/MenuList";
+import Contact from "./components/Contact";
 
-import MenuItemApi from "./generated/src/api/MenuItemApi.js"
+import MenuItemApi from "./generated/src/api/MenuItemApi.js";
 const api = new MenuItemApi();
 
+
+
 class App extends Component {
+  state = {menuItems: []}
 	componentDidMount() {
 		api.getMenuItems((error, data, response) => {
-			console.log(data);
+      console.log(data);
+      this.setState({menuItems: data});
 		});
 	}
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save!!
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Navbar />
+          <MenuList  menuItems = {this.state.menuItems}/> 
+          <Contact/>
+
+          
       </div>
     );
   }
