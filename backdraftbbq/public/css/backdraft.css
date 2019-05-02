@@ -106,13 +106,7 @@ border-style: solid;
 width: auto;
 margin: 10%;
 }
-#about {
-background-color: white;
-border-style: solid;
-width: auto;
-margin: 10%;
-margin-top: 10px;
-}
+
 #gallery {
 background-color: white;
 display: flex;
@@ -120,13 +114,7 @@ border-style: solid;
 width: auto;
 margin: 10%;
 }
-#contact {
-background-color: white;
-border-style: solid;
-width: auto;
-margin: 10%;
-display: flex;
-}
+
 #bdburger {
   border-style: solid;
 }
