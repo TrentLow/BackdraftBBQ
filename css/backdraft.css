@@ -11,16 +11,14 @@
   background-color: inherit;
   font-family: "Comic Sans MS", sans-serif;
   margin: 0;
-  
 }
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #2a2424;
   min-width: 14px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  
 }
 .menu:hover .dropdown-content {
   display: block;
@@ -37,104 +35,100 @@
   background-color: #2a2424;
 }
 .nav-link {
-font-family: "Comic Sans MS", sans-serif;
-font-weight: bold;
-font-size: 24px;
-color: white;
-text-decoration: none;
+  font-family: "Comic Sans MS", sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  color: white;
+  text-decoration: none;
 }
-@media screen 
-and (device-width: 360px) 
-and (device-height: 640px) 
-and (-webkit-device-pixel-ratio: 6) 
-and (orientation: landscape) {
-#nav-bar {
-  display: none;
-}
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 6) and (orientation: landscape) {
+  #nav-bar {
+    display: none;
+  }
 }
 
 main {
-margin: auto;
-width: 100%;
-position: relative;
-bottom: 100px;
-display: flex;
-flex-direction: column;
-align-items: center;
+  margin: auto;
+  width: 100%;
+  position: relative;
+  bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 section {
-text-align: center;
-padding: 16px;
-flex-direction: column;
-align-items: center;
-width: 100%
+  text-align: center;
+  padding: 16px;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 section p {
-width: 50%;
+  width: 50%;
 }
 section h1 {
-padding: 25px;
-font-size: 50px;
+  padding: 25px;
+  font-size: 50px;
 }
 body {
-background-color: firebrick;
-font-family: "Comic Sans MS", sans-serif;
+  background-color: firebrick;
+  font-family: "Comic Sans MS", sans-serif;
 }
 #header-img {
-padding: 40px;
+  padding: 40px;
 }
 #hog {
   border-style: solid;
 }
 
 h2 {
-padding-top: 50px; 
+  padding-top: 50px;
 }
 
 #all {
-text-align: center;
-padding: 16px;
-display: flex;
-flex-direction: column;
-align-items: center;
-width: 100%;
-font-weight: bold;
+  text-align: center;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
 }
 #menu {
-background-color: white;
-border-style: solid;
-width: auto;
-margin: 10%;
+  background-color: white;
+  border-style: solid;
+  width: auto;
+  margin: 10%;
 }
 #about {
-background-color: white;
-border-style: solid;
-width: auto;
-margin: 10%;
-margin-top: 10px;
+  background-color: white;
+  border-style: solid;
+  width: auto;
+  margin: 10%;
+  margin-top: 10px;
 }
 #gallery {
-background-color: white;
-display: flex;
-border-style: solid;
-width: auto;
-margin: 10%;
+  background-color: white;
+  display: flex;
+  border-style: solid;
+  width: auto;
+  margin: 10%;
 }
 #contacts {
-background-color: white;
-border-style: solid;
-width: auto;
-margin: 10%;
-display: flex;
+  background-color: white;
+  border-style: solid;
+  width: auto;
+  margin: 10%;
+  display: flex;
 }
 #bdburger {
   border-style: solid;
 }
 #home {
-width: auto;
-margin: 15px auto;
-margin-top: 65px;
-display: block;
+  width: auto;
+  margin: 15px auto;
+  margin-top: 65px;
+  display: block;
 }
 #about {
   display: flex;

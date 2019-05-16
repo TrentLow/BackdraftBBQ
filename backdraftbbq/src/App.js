@@ -5,6 +5,8 @@ import MenuList from "./components/MenuList";
 import Contact from "./components/Contact";
 import About from "./components/About";
 import MenuItemApi from "./generated/src/api/MenuItemApi.js";
+import AddMenuItem from "./components/addmenuitem";
+import AddImg from "./components/addimage";
 const api = new MenuItemApi();
 
 class App extends Component {
@@ -22,6 +24,8 @@ class App extends Component {
         <About />
         <MenuList menuItems={this.state.menuItems} />
         <Contact />
+        <AddMenuItem />
+        <AddImg />
       </div>
     );
   }
