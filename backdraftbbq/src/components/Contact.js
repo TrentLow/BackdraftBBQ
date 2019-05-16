@@ -24,7 +24,7 @@ const Contact = props => (
       <p>Contact us so we can get in touch about your catering needs!!</p>
       <PhoneNumber number="(701)-453-3452" />
       Catering:
-      <PhoneNumber number="(701)-000-0000" />
+      <PhoneNumber number="(701)-453-3413" />
       <div>
         <a href="mailto:backdraftbbqnd@gmail.com">Email Us</a>
       </div>

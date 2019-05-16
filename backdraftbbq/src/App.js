@@ -14,7 +14,7 @@ class App extends Component {
   componentDidMount() {
     api.getMenuItems((error, data, response) => {
       console.log(data);
-      this.setState({ menuItems: data });
+      this.setState({ menuItems: data || [] });
     });
   }
   render() {
