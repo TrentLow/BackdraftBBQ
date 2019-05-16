@@ -1,5 +1,7 @@
 'use strict';
 
+const models = require('../models');
+const uuid = require('uuid');
 
 /**
  * Adds a new menu item
@@ -9,12 +11,18 @@
  **/
 exports.addMenuItem = function(body) {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    models.MenuItem.create(
+			{
+				id: uuid.v4(),
+				title: body.title,
+				price: body.price,
+				category: body.category,
+				createdAt: new Date(),
+				updatedAt: new Date()
+			}
+		)
+		.then(item => resolve(item))
+		.catch(err => reject(err));
   });
 }
 
@@ -27,7 +35,24 @@ exports.addMenuItem = function(body) {
  **/
 exports.deleteMenuitem = function(id) {
   return new Promise(function(resolve, reject) {
-    resolve();
+	models.MenuItem.findByPk(id)
+		.then(item => {
+			if (!item) {
+				reject();
+			} else {
+				item.destroy()
+					.then(result => {
+						if (result > 0) {
+							resolve();
+						} else {
+							reject();
+						}
+					})
+					.catch(err => reject(err))
+				}
+			}
+		)
+		.catch(err => reject(err));
   });
 }
 
@@ -37,14 +62,17 @@ exports.deleteMenuitem = function(id) {
  *
  * returns List
  **/
+
 exports.getMenuItems = function() {
   return new Promise(function(resolve, reject) {
-    var examples = [{category: "appetizers", title: "burger", price: 1.75},{category: "kids", title: "fish", price: 2.0},{category: "beverages", title: "fries", price: 10.75},];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples);
-    } else {
-      resolve();
-    }
+	models.MenuItem.findAll()
+		.then(results => {
+			const menuItems = results.map(item => {
+				return {title: item.title, price: item.price, category: item.category};
+			})
+			resolve(menuItems);
+		})
+		.catch(err => reject(err));
   });
 }
 

@@ -156,7 +156,7 @@ components:
         - id
         - title
         - price
-        - catagory
+        - category
       properties:
         id:
           type: integer
