@@ -7,6 +7,7 @@ import About from "./components/About";
 import MenuItemApi from "./generated/src/api/MenuItemApi.js";
 import AddMenuItem from "./components/addmenuitem";
 import AddImg from "./components/addimage";
+import { BrowserRouter, Route } from "react-router-dom";
 const api = new MenuItemApi();
 
 class App extends Component {
@@ -19,14 +20,25 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <Navbar />
-        <About />
-        <MenuList menuItems={this.state.menuItems} />
-        <Contact />
-        <AddMenuItem />
-        <AddImg />
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Navbar />
+          <About />
+          <MenuList menuItems={this.state.menuItems} />
+          <Contact />
+          <Route
+            path="/admin"
+            render={() => {
+              return (
+                <React.Fragment>
+                  <AddMenuItem />
+                  <AddImg />
+                </React.Fragment>
+              );
+            }}
+          />
+        </div>
+      </BrowserRouter>
     );
   }
 }

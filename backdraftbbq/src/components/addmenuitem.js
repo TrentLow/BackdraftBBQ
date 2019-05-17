@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import MenuItemApi from "../generated/src/api/MenuItemApi.js";
+
 const api = new MenuItemApi();
 class AddMenuItem extends Component {
   state = { category: "appetizers", price: "", title: "" };
