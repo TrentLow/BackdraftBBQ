@@ -1,7 +1,47 @@
 import React, { Component } from "react";
-
+import MenuItemApi from "../generated/src/api/MenuItemApi.js";
+const api = new MenuItemApi();
 class AddMenuItem extends Component {
-  state = {};
+  state = { category: "appetizers", price: "", title: "" };
+  ondelete = () => {
+    let txt;
+    const result = window.confirm(
+      `Are you sure you want to delete ${this.state.title}?`
+    );
+    if (result == true) {
+      txt = "You deleted the item!";
+    } else {
+      txt = "You canceled the deletion process!";
+    }
+  };
+  onsubmit = () => {
+    api.addMenuItem(
+      {
+        category: this.state.category,
+        price: this.state.price,
+        title: this.state.title,
+        id: 0
+      },
+      (error, data, response) => {
+        console.log(data);
+      }
+    );
+  };
+  oncategory = event => {
+    this.setState({ category: event.target.value }, () =>
+      console.log(this.state.category)
+    );
+  };
+  onprice = event => {
+    this.setState({ price: event.target.value }, () =>
+      console.log(this.state.price)
+    );
+  };
+  ontitle = event => {
+    this.setState({ title: event.target.value }, () =>
+      console.log(this.state.title)
+    );
+  };
   render() {
     return (
       <div>
@@ -17,9 +57,9 @@ class AddMenuItem extends Component {
         >
           <div>
             <label id="catagory-label" for="catagory">
-              Catagory
+              Category
             </label>
-            <select>
+            <select onChange={this.oncategory}>
               <option value="appetizers">Appetizers</option>
               <option value="sides">Sides</option>
               <option value="breakfast">Breakfast</option>
@@ -30,12 +70,17 @@ class AddMenuItem extends Component {
             </select>
           </div>
           <div>
-            {" "}
             <label id="name-label">Name</label>
-            <input id="name" type="text" placeholder="Name" required />
+            <input
+              id="name"
+              type="text"
+              placeholder="Name"
+              required
+              onChange={this.ontitle}
+              value={this.state.title}
+            />
           </div>
           <div>
-            {" "}
             <label id="number-label">Price</label>
             <input
               id="number"
@@ -44,8 +89,12 @@ class AddMenuItem extends Component {
               step="0.01"
               placeholder="1.99"
               required
+              onChange={this.onprice}
+              value={this.state.price}
             />
           </div>
+          <button onClick={this.onsubmit}>Submit</button>
+          <button onClick={this.ondelete}>Delete</button>
         </div>
       </div>
     );
