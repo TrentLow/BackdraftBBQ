@@ -7,7 +7,7 @@ import About from "./components/About";
 import MenuItemApi from "./generated/src/api/MenuItemApi.js";
 import AddMenuItem from "./components/addmenuitem";
 import AddImg from "./components/addimage";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Gallery from "./components/Gallery";
 import GalleryApi from "./generated/src/api/GalleryApi";
 const menuApi = new MenuItemApi();
@@ -29,22 +29,26 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Navbar />
-          <About />
-          <MenuList menuItems={this.state.menuItems} />
-          <Gallery gallery={this.state.gallery} />
-          <Contact />
-          <Route
-            path="/admin"
-            render={() => {
-              return (
-                <React.Fragment>
-                  <AddMenuItem />
-                  <AddImg />
-                </React.Fragment>
-              );
-            }}
-          />
+          <Switch>
+            <Route path="/admin/gallery/:id" component={AddImg} />
+            <Route path="/admin/gallery" component={AddImg} />
+            <Route path="/admin/menu/:id" component={AddMenuItem} />
+            <Route path="/admin/menu" component={AddMenuItem} />
+            <Route
+              path="/"
+              render={() => {
+                return (
+                  <React.Fragment>
+                    <Navbar />
+                    <About />
+                    <MenuList menuItems={this.state.menuItems} />
+                    <Gallery gallery={this.state.gallery} />
+                    <Contact />
+                  </React.Fragment>
+                );
+              }}
+            />
+          </Switch>
         </div>
       </BrowserRouter>
     );

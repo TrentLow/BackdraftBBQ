@@ -1,22 +1,37 @@
 import React, { Component } from "react";
 import MenuItemApi from "../generated/src/api/MenuItemApi.js";
 
-const api = new MenuItemApi();
+const menuApi = new MenuItemApi();
 class AddMenuItem extends Component {
   state = { category: "appetizers", price: "", title: "" };
+  componentDidMount() {
+    if (this.props.match.params.id) {
+      menuApi.getMenuItem(
+        this.props.match.params.id,
+        (error, data, response) => {
+          console.log(data);
+          this.setState({
+            category: data.category,
+            price: data.price,
+            title: data.title
+          });
+        }
+      );
+    }
+  }
   ondelete = () => {
     let txt;
     const result = window.confirm(
       `Are you sure you want to delete ${this.state.title}?`
     );
     if (result == true) {
-      txt = "You deleted the item!";
+      menuApi.deleteMenuitem(this.props.match.params.id);
     } else {
       txt = "You canceled the deletion process!";
     }
   };
   onsubmit = () => {
-    api.addMenuItem(
+    menuApi.addMenuItem(
       {
         category: this.state.category,
         price: this.state.price,
