@@ -57,6 +57,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+      security:
+      - Bearer: []
   '/menu_item/{id}':
     delete:
       summary: Delete the specified menu item
@@ -67,7 +69,7 @@ paths:
         - in: path
           name: id
           schema:
-            type: integer
+            type: string
           description: The id of the menu item to delete
           required: true
       responses:
@@ -79,6 +81,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+      security:
+      - Bearer: []
   /gallery:
     get:
       summary: Get all gallery iamges
@@ -127,6 +131,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+      security:
+      - Bearer: []
   '/gallery/{id}':
     delete:
       summary: Delete the specified menu item
@@ -137,7 +143,7 @@ paths:
         - in: path
           name: id
           schema:
-            type: integer
+            type: string
           description: The id of the gallery image to delete
           required: true
       responses:
@@ -149,7 +155,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+      security:
+      - Bearer: []
 components:
+  securitySchemes:
+    Bearer:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
   schemas:
     MenuItem:
       required:
@@ -159,7 +172,7 @@ components:
         - category
       properties:
         id:
-          type: integer
+          type: string
         price:
           type: string
         title:
@@ -180,7 +193,7 @@ components:
         - url
       properties:
         id:
-          type: integer
+          type: string
         url:
           type: string
     Error:
