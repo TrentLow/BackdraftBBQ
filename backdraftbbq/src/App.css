@@ -134,14 +134,6 @@ h2 {
   margin: 10%;
 }
 
-#gallery {
-  background-color: white;
-  display: flex;
-  border-style: solid;
-  width: auto;
-  margin: 10%;
-}
-
 #bdburger {
   border-style: solid;
 }

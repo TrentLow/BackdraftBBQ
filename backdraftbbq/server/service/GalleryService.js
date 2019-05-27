@@ -1,5 +1,4 @@
-'use strict';
-
+"use strict";
 
 /**
  * Adds a new gallery image
@@ -16,8 +15,7 @@ exports.addGalleryImage = function(body) {
       resolve();
     }
   });
-}
-
+};
 
 /**
  * Delete the specified menu item
@@ -29,8 +27,7 @@ exports.deleteGalleryImage = function(id) {
   return new Promise(function(resolve, reject) {
     resolve();
   });
-}
-
+};
 
 /**
  * Get all gallery iamges
@@ -39,12 +36,15 @@ exports.deleteGalleryImage = function(id) {
  **/
 exports.getGalleryImages = function() {
   return new Promise(function(resolve, reject) {
-    var examples = {};
+    var examples = [
+      { id: 1, url: "https://picsum.photos/200/300 " },
+      { id: 2, url: "https://picsum.photos/200/300 " }
+    ];
+
     if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
+      resolve(examples);
     } else {
       resolve();
     }
   });
-}
-
+};

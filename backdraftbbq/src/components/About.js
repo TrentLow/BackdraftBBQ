@@ -18,8 +18,8 @@ const About = props => (
         home of the one and only Backdraft Brisket Burger, a cheese burger with
         a slice of some of the best smoked brisket you may ever taste. The diner
         was established November 2018, under the management of Kalvin Myers, and
-        Kevin Archer. These two guys take great pride in what they dish up! Not
-        only does this small town eatery have a top tier location, they will
+        his daughter Christa. These two take great pride in what they dish up!
+        Not only does this small town eatery have a top tier location, they will
         bring the food to you!! Call now to place your catering needs!
       </p>
     </div>
