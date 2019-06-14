@@ -7,22 +7,28 @@ import About from "./components/About";
 import MenuItemApi from "./generated/src/api/MenuItemApi.js";
 import AddMenuItem from "./components/addmenuitem";
 import AddImg from "./components/addimage";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import Gallery from "./components/Gallery";
 import GalleryApi from "./generated/src/api/GalleryApi";
-import Auth from './Auth.js';
+import Auth from './Auth';
+import Callback from './Callback';
+import createHistory from 'history/createBrowserHistory';
 
-const auth = new Auth();
+const history = createHistory();
+
+const auth = new Auth(history);
 const menuApi = new MenuItemApi();
 const galleryApi = new GalleryApi();
 
-class App extends Component {
-    constructor(props) {
-        super(props);
-        const user = window.localStorage.getItem("user");
-        console.log(user);
-        this.state = { menuItems: [], gallery: [], user: user };
+const handleAuthentication = (nextState, replace) => {
+    if (/access_token|id_token|error/.test(nextState.location.hash)) {
+        auth.handleAuthentication();
     }
+}
+
+class App extends Component {
+    state = { menuItems: [], gallery: [] };
+
     componentDidMount() {
         menuApi.getMenuItems((error, data, response) => {
             console.log(data);
@@ -33,33 +39,46 @@ class App extends Component {
             this.setState({ gallery: data || [] });
         });
     }
+
+    componentDidMount() {
+        if (localStorage.getItem('isLoggedIn') === 'true') {
+            auth.renewSession();
+        }
+    }
     render() {
         return (
-            <BrowserRouter>
+            <Router history={history}>
                 <div className="App">
-					<Switch>
-						<Route path="/admin/gallery/:id" component={AddImg} />
-						<Route path="/admin/gallery" component={AddImg} />
-						<Route path="/admin/menu/:id" component={AddMenuItem} />
-						<Route path="/admin/menu" component={AddMenuItem} />
-						<Route
-						  path="/"
-						  render={() => {
-							return (
-							  <React.Fragment>
-								<Navbar />
-								<About />
-								<MenuList menuItems={this.state.menuItems} />
-								<Gallery gallery={this.state.gallery} />
-								<Contact />
-								<div onClick={() => auth.login()}>Login</div>
-							  </React.Fragment>
-							);
-						  }}
-						/>
-				  </Switch>
-				</div>
-			</BrowserRouter>
+                    <Switch>
+                        <Route
+                            path="/admin"
+                            render={() => {
+                                return (
+                                    <React.Fragment>
+                                        <AddMenuItem />
+                                        <AddImg />
+                                    </React.Fragment>
+                                );
+                            }}
+                        />
+                        <Route path="/callback" render={(props) => {
+                            handleAuthentication(props);
+                            return <Callback {...props} />
+                        }} />
+                        <Route path="/" render={() => (
+                            <React.Fragment>
+                                <Navbar />
+                                <About />
+                                <MenuList menuItems={this.state.menuItems} />
+                                <Gallery gallery={this.state.gallery} />
+                                <Contact />
+                                {!auth.isAuthenticated() ? <div onClick={() => auth.login()}>Login</div> : <div onClick={() => auth.logout()}>Logout</div>}
+                            </React.Fragment>
+                        )}
+                        />
+                    </Switch>
+                </div>
+            </Router>
         );
     }
 }
