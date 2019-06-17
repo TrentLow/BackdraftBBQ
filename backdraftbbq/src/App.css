@@ -1,38 +1,8 @@
 .App {
   text-align: center;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 .menu {
-  float: left;
+  float: right;
   overflow: hidden;
 }
 .menu .dropbtn {
@@ -56,7 +26,6 @@
 .menu:hover .dropdown-content {
   display: block;
 }
-
 #nav-bar {
   display: flex;
   position: fixed;
@@ -64,7 +33,7 @@
   top: 0px;
   justify-content: space-evenly;
   width: 100%;
-  padding-top: 20px;
+  padding: 5px 0px 10px 5px;
   background-color: #2a2424;
 }
 .nav-link {
@@ -75,31 +44,15 @@
   text-decoration: none;
 }
 @media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 6) and (orientation: landscape) {
-  #nav-bar {
-    display: none;
+  p {
+    padding: 10%;
   }
 }
 
-main {
-  margin: auto;
-  width: 100%;
-  position: relative;
-  bottom: 100px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+p {
+  margin: 5%;
 }
-section {
-  text-align: center;
-  padding: 16px;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-section p {
-  width: 50%;
-}
-section h1 {
+h1 {
   padding: 25px;
   font-size: 50px;
 }
@@ -107,36 +60,11 @@ body {
   background-color: firebrick;
   font-family: "Comic Sans MS", sans-serif;
 }
-#header-img {
-  padding: 40px;
-}
-#hog {
-  border-style: solid;
-}
 
 h2 {
-  padding-top: 50px;
+  padding-top: 5%;
 }
 
-#all {
-  text-align: center;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  font-weight: bold;
-}
-#menu {
-  background-color: white;
-  border-style: solid;
-  width: auto;
-  margin: 10%;
-}
-
-#bdburger {
-  border-style: solid;
-}
 #home {
   width: auto;
   margin: 15px auto;
