@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const models = require('../models');
-const uuid = require('uuid');
+const models = require("../models");
+const uuid = require("uuid");
 
 /**
  * Adds a new menu item
@@ -11,21 +11,18 @@ const uuid = require('uuid');
  **/
 exports.addMenuItem = function(body) {
   return new Promise(function(resolve, reject) {
-    models.MenuItem.create(
-			{
-				id: uuid.v4(),
-				title: body.title,
-				price: body.price,
-				category: body.category,
-				createdAt: new Date(),
-				updatedAt: new Date()
-			}
-		)
-		.then(item => resolve(item))
-		.catch(err => reject(err));
+    models.MenuItem.create({
+      id: uuid.v4(),
+      title: body.title,
+      price: body.price,
+      category: body.category,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    })
+      .then(item => resolve(item))
+      .catch(err => reject(err));
   });
-}
-
+};
 
 /**
  * Delete the specified menu item
@@ -35,27 +32,26 @@ exports.addMenuItem = function(body) {
  **/
 exports.deleteMenuitem = function(id) {
   return new Promise(function(resolve, reject) {
-	models.MenuItem.findByPk(id)
-		.then(item => {
-			if (!item) {
-				reject();
-			} else {
-				item.destroy()
-					.then(result => {
-						if (result > 0) {
-							resolve();
-						} else {
-							reject();
-						}
-					})
-					.catch(err => reject(err))
-				}
-			}
-		)
-		.catch(err => reject(err));
+    models.MenuItem.findByPk(id)
+      .then(item => {
+        if (!item) {
+          reject();
+        } else {
+          item
+            .destroy()
+            .then(result => {
+              if (result > 0) {
+                resolve();
+              } else {
+                reject();
+              }
+            })
+            .catch(err => reject(err));
+        }
+      })
+      .catch(err => reject(err));
   });
-}
-
+};
 
 /**
  * Get all menu items
@@ -65,14 +61,31 @@ exports.deleteMenuitem = function(id) {
 
 exports.getMenuItems = function() {
   return new Promise(function(resolve, reject) {
-	models.MenuItem.findAll()
-		.then(results => {
-			const menuItems = results.map(item => {
-				return {title: item.title, price: item.price, category: item.category};
-			})
-			resolve(menuItems);
-		})
-		.catch(err => reject(err));
+    models.MenuItem.findAll()
+      .then(results => {
+        const menuItems = results.map(item => {
+          return {
+            title: item.title,
+            price: item.price,
+            category: item.category
+          };
+        });
+        resolve(menuItems);
+      })
+      .catch(err => reject(err));
   });
-}
+};
 
+exports.getMenuItem = function(id) {
+  return new Promise(function(resolve, reject) {
+    models.MenuItem.findByPk(id)
+      .then(menuItem => {
+        if (!menuItem) {
+          reject();
+        } else {
+          resolve(menuItem);
+        }
+      })
+      .catch(err => reject(err));
+  });
+};

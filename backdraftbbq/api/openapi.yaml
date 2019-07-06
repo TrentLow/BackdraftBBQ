@@ -60,6 +60,31 @@ paths:
       security:
       - Bearer: []
   '/menu_item/{id}':
+    get:
+      summary: Get a menu item
+      operationId: getMenuItem
+      tags:
+        - menu_item
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          description: The id of the menu item to retrieve
+          required: true
+      responses:
+        '201':
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MenuItem'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
     delete:
       summary: Delete the specified menu item
       operationId: deleteMenuitem
