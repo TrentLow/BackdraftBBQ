@@ -85,6 +85,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+    patch:
+      summary: Edit a new menu item
+      operationId: editMenuItem
+      tags:
+        - menu_item
+      requestBody:
+        description: The menu item details
+        required: true
+        x-name: body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MenuItem'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          description: The id of the menu item to edit
+          required: true
+      responses:
+        '201':
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MenuItem'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - Bearer: []
     delete:
       summary: Delete the specified menu item
       operationId: deleteMenuitem

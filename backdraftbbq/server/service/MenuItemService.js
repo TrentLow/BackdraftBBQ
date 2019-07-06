@@ -54,11 +54,62 @@ exports.deleteMenuitem = function(id) {
 };
 
 /**
+ * Edit a new menu item
+ *
+ * body MenuItem The menu item details
+ * id String The id of the menu item to edit
+ * returns MenuItem
+ **/
+exports.editMenuItem = function (body, id) {
+    return new Promise(function (resolve, reject) {
+        models.MenuItem.update(
+            {
+                title: body.title,
+                price: body.price,
+                category: body.category,
+            },
+            {
+                where: {
+                    id: id,
+                }
+            }
+        )
+            .then(affected => {
+                if (affected.length === 0) {
+                    reject();
+                } else {
+                    resolve();
+                }
+            })
+            .catch(err => reject(err));
+    });
+}
+
+/**
+ * Get a menu item
+ *
+ * id String The id of the menu item to retrieve
+ * returns MenuItem
+ **/
+exports.getMenuItem = function (id) {
+    return new Promise(function (resolve, reject) {
+        models.MenuItem.findByPk(id)
+            .then(menuItem => {
+                if (!menuItem) {
+                    reject();
+                } else {
+                    resolve(menuItem);
+                }
+            })
+            .catch(err => reject(err));
+    });
+};
+
+/**
  * Get all menu items
  *
  * returns List
  **/
-
 exports.getMenuItems = function() {
   return new Promise(function(resolve, reject) {
     models.MenuItem.findAll()
@@ -76,16 +127,3 @@ exports.getMenuItems = function() {
   });
 };
 
-exports.getMenuItem = function(id) {
-  return new Promise(function(resolve, reject) {
-    models.MenuItem.findByPk(id)
-      .then(menuItem => {
-        if (!menuItem) {
-          reject();
-        } else {
-          resolve(menuItem);
-        }
-      })
-      .catch(err => reject(err));
-  });
-};
