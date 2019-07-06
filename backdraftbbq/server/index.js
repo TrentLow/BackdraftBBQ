@@ -23,7 +23,7 @@ var swaggerDoc = jsyaml.safeLoad(spec);
 
 var jwt = require('jsonwebtoken');
 var fs = require('fs');
-var cert_pub = fs.readFileSync(__dirname + '/config/backdraft-test.pem');
+var cert_pub = fs.readFileSync(__dirname + '/config/backdraft.pem');
 function verifyToken(req, secDef, token, next) {
     const bearerRegex = /^Bearer\s/;
 

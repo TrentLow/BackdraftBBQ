@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import MenuItemApi from "../generated/src/api/MenuItemApi.js";
 
 const menuApi = new MenuItemApi();
+
 class AddMenuItem extends Component {
   state = { category: "appetizers", price: "", title: "" };
   componentDidMount() {
@@ -25,18 +26,22 @@ class AddMenuItem extends Component {
       `Are you sure you want to delete ${this.state.title}?`
     );
     if (result == true) {
-      menuApi.deleteMenuitem(this.props.match.params.id);
+      this.props.api.deleteMenuitem(this.props.match.params.id);
     } else {
       txt = "You canceled the deletion process!";
     }
   };
   onsubmit = () => {
+    menuApi.apiClient.authentications[
+      "Bearer"
+    ].accessToken = this.props.auth.getIdToken();
+
     menuApi.addMenuItem(
       {
         category: this.state.category,
         price: this.state.price,
         title: this.state.title,
-        id: 0
+        id: ""
       },
       (error, data, response) => {
         console.log(data);
