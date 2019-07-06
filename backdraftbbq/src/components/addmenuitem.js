@@ -35,7 +35,13 @@ class AddMenuItem extends Component {
     menuApi.apiClient.authentications[
       "Bearer"
     ].accessToken = this.props.auth.getIdToken();
-
+      if (this.props.match.params.id) {
+        menuApi.editMenuItem(
+          category: this.state.category,
+          price: this.state.price,
+          title: this.state.title,
+          id: "")
+      }
     menuApi.addMenuItem(
       {
         category: this.state.category,
