@@ -21,12 +21,15 @@ class AddMenuItem extends Component {
     }
   }
   ondelete = () => {
+    menuApi.apiClient.authentications[
+      "Bearer"
+    ].accessToken = this.props.auth.getIdToken();
     let txt;
     const result = window.confirm(
       `Are you sure you want to delete ${this.state.title}?`
     );
     if (result == true) {
-      this.props.api.deleteMenuitem(this.props.match.params.id);
+      menuApi.deleteMenuitem(this.props.match.params.id);
     } else {
       txt = "You canceled the deletion process!";
     }
@@ -35,13 +38,14 @@ class AddMenuItem extends Component {
     menuApi.apiClient.authentications[
       "Bearer"
     ].accessToken = this.props.auth.getIdToken();
-      if (this.props.match.params.id) {
-        menuApi.editMenuItem(
-          category: this.state.category,
-          price: this.state.price,
-          title: this.state.title,
-          id: "")
-      }
+    if (this.props.match.params.id) {
+      menuApi.editMenuItem(this.props.match.params.id, {
+        category: this.state.category,
+        price: this.state.price,
+        title: this.state.title,
+        id: ""
+      });
+    }
     menuApi.addMenuItem(
       {
         category: this.state.category,
