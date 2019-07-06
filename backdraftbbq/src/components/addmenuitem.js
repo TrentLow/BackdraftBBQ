@@ -31,7 +31,7 @@ class AddMenuItem extends Component {
     if (result == true) {
       menuApi.deleteMenuitem(this.props.match.params.id);
     } else {
-      txt = "You canceled the deletion process!";
+      txt = "You canceled process!";
     }
   };
   onsubmit = () => {
