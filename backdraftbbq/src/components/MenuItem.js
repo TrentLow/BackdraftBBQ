@@ -5,8 +5,8 @@ const MenuItem = props => {
     <div>
       {props.menuItem.title}{" "}
       <span style={{ color: "pink" }}>{props.menuItem.price}</span>
-      {props.loggedIn && (
-        <Link to={`admin/menu/${props.menuItem.id}`}>Edit</Link>
+      {props.authenticated && (
+        <Link to={`/menu/${props.menuItem.id}`}>Edit</Link>
       )}
     </div>
   );

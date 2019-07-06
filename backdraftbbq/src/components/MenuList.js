@@ -15,7 +15,7 @@ const MenuCategory = props => {
     >
       <h2>{props.name}</h2>
       {props.menuItems.map((menuItem, key) => (
-        <MenuItem menuItem={menuItem} />
+        <MenuItem menuItem={menuItem} authenticated={props.authenticated} />
       ))}
     </div>
   );
@@ -27,36 +27,43 @@ const MenuList = props => (
       name="Appetizers"
       id="appetizers"
       menuItems={props.menuItems.filter(item => item.category === "appetizers")}
+      authenticated={props.authenticated}
     />
     <MenuCategory
       name="Side Orders"
       id="sideorders"
       menuItems={props.menuItems.filter(item => item.category === "sides")}
+      authenticated={props.authenticated}
     />
     <MenuCategory
       name="Breakfast"
       id="breakfast"
       menuItems={props.menuItems.filter(item => item.category === "breakfast")}
+      authenticated={props.authenticated}
     />
     <MenuCategory
       name="Kids Menu"
       id="kidsmenu"
       menuItems={props.menuItems.filter(item => item.category === "kids")}
+      authenticated={props.authenticated}
     />
     <MenuCategory
       name="Sandwiches & Baskets"
       id="sandwichbaskets"
       menuItems={props.menuItems.filter(item => item.category === "baskets")}
+      authenticated={props.authenticated}
     />
     <MenuCategory
       name="Beef, Chicken, & Shrimp"
       id="bfs"
       menuItems={props.menuItems.filter(item => item.category === "entrees")}
+      authenticated={props.authenticated}
     />
     <MenuCategory
       name="Beverages"
       id="beverages"
       menuItems={props.menuItems.filter(item => item.category === "beverages")}
+      authenticated={props.authenticated}
     />
   </div>
 );

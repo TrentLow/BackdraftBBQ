@@ -55,19 +55,31 @@ class App extends Component {
               }}
             />
             <Route
+              path="/menu/:id"
+              render={props => <AddMenuItem {...props} auth={auth} />}
+            />
+            <Route
               path="/"
-              render={(props) => (
+              render={props => (
                 <React.Fragment>
                   <Navbar />
                   <About />
-                  <MenuList menuItems={this.state.menuItems} />
+                  <MenuList
+                    menuItems={this.state.menuItems}
+                    authenticated={auth.isAuthenticated()}
+                  />
+                  ;
                   <Gallery gallery={this.state.gallery} />
                   <Contact />
                   {!auth.isAuthenticated() ? (
-                    <div onClick={() => auth.login()}>Login</div>
+                    <button type="button" onClick={() => auth.login()}>
+                      Login
+                    </button>
                   ) : (
                     <div>
-                      <div onClick={() => auth.logout()}>Logout</div>
+                      <button type="button" onClick={() => auth.logout()}>
+                        Logout
+                      </button>
                       <AddMenuItem {...props} auth={auth} />
                       <AddImg {...props} auth={auth} />
                     </div>
