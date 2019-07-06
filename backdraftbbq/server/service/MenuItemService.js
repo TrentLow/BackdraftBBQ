@@ -65,6 +65,7 @@ exports.getMenuItems = function() {
       .then(results => {
         const menuItems = results.map(item => {
           return {
+            id: item.id,
             title: item.title,
             price: item.price,
             category: item.category

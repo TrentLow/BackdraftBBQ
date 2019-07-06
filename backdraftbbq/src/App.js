@@ -68,7 +68,7 @@ class App extends Component {
                     menuItems={this.state.menuItems}
                     authenticated={auth.isAuthenticated()}
                   />
-                  ;
+
                   <Gallery gallery={this.state.gallery} />
                   <Contact />
                   {!auth.isAuthenticated() ? (
