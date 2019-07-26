@@ -1,5 +1,5 @@
 'use strict';
-const menuItemEnum = require('../util/enum').MenuItemEnum;
+const menuItemEnum = require('../utils/enum').MenuItemEnum;
 
 module.exports = (sequelize, DataTypes) => {
   const MenuItem = sequelize.define('MenuItem', {

@@ -129,6 +129,11 @@ resources:
         VPCSecurityGroups:
           - 'Fn::GetAtt': RDSSecurityGroup.GroupId
 functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
   getMenuItem:
     handler: getMenuItem.main
     events:
