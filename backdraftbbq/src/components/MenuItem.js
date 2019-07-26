@@ -4,7 +4,7 @@ const MenuItem = props => {
   return (
     <div>
       {props.menuItem.title}{" "}
-      <span style={{ color: "pink" }}>{props.menuItem.price}</span>
+      <span style={{ color: "black" }}>{props.menuItem.price}</span>
       {props.authenticated && (
         <Link to={`/menu/${props.menuItem.id}`}>Edit</Link>
       )}

@@ -8,8 +8,7 @@ const About = props => (
       style={{
         borderRadius: "5px",
         margin: "0 auto",
-        backgroundColor: "white",
-        width: "45%"
+        backgroundColor: "white"
       }}
     >
       <p>

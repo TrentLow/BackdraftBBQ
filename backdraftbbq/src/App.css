@@ -47,6 +47,11 @@
   p {
     padding: 10%;
   }
+  #nav-bar {
+    display: flex;
+  }
+  body {
+  }
 }
 
 p {

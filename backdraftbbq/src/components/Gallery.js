@@ -7,9 +7,7 @@ const Gallery = props => (
       id="gallery"
       style={{
         borderRadius: "5px",
-        margin: "0 auto",
-        backgroundColor: "white",
-        width: "45%"
+        backgroundColor: "white"
       }}
     >
       {props.gallery.map(gallery => (

@@ -7,9 +7,7 @@ const MenuCategory = props => {
       style={{
         border: "4px solid-black",
         borderRadius: "5px",
-        margin: "0 auto",
-        backgroundColor: "white",
-        width: "45%"
+        backgroundColor: "white"
       }}
       id={props.id}
     >
@@ -54,7 +52,7 @@ const MenuList = props => (
       authenticated={props.authenticated}
     />
     <MenuCategory
-      name="Beef, Chicken, & Shrimp"
+      name="Dinners"
       id="bfs"
       menuItems={props.menuItems.filter(item => item.category === "entrees")}
       authenticated={props.authenticated}

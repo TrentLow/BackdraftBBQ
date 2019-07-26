@@ -13,9 +13,7 @@ const Contact = props => (
       id="contact"
       style={{
         borderRadius: "5px",
-        margin: "0 auto",
-        backgroundColor: "white",
-        width: "45%"
+        backgroundColor: "white"
       }}
     >
       <p>Business Hours:</p>
@@ -29,6 +27,7 @@ const Contact = props => (
         <a href="mailto:backdraftbbqnd@gmail.com">Email Us</a>
       </div>
       <iframe
+        id="map"
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2653.36710009526!2d-101.73908468416074!3d48.31502264676407!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52df4783895a2599%3A0xa07fcafccd80dde!2s213+Main+St+N%2C+Berthold%2C+ND+58718!5e0!3m2!1sen!2sus!4v1556233846926!5m2!1sen!2sus"
         width="600"
         height="450"

@@ -30,6 +30,7 @@ class AddMenuItem extends Component {
     );
     if (result == true) {
       menuApi.deleteMenuitem(this.props.match.params.id);
+      window.location.replace("/");
     } else {
       txt = "You canceled process!";
     }
@@ -45,18 +46,20 @@ class AddMenuItem extends Component {
         title: this.state.title,
         id: ""
       });
+    } else {
+      menuApi.addMenuItem(
+        {
+          category: this.state.category,
+          price: this.state.price,
+          title: this.state.title,
+          id: ""
+        },
+        (error, data, response) => {
+          console.log(data);
+        }
+      );
+      window.location.reload();
     }
-    menuApi.addMenuItem(
-      {
-        category: this.state.category,
-        price: this.state.price,
-        title: this.state.title,
-        id: ""
-      },
-      (error, data, response) => {
-        console.log(data);
-      }
-    );
   };
   oncategory = event => {
     this.setState({ category: event.target.value }, () =>
@@ -81,9 +84,7 @@ class AddMenuItem extends Component {
           id="additem"
           style={{
             borderRadius: "5px",
-            margin: "0 auto",
-            backgroundColor: "white",
-            width: "45%"
+            backgroundColor: "white"
           }}
         >
           <div>
