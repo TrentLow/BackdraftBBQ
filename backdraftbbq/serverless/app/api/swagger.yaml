@@ -1,0 +1,282 @@
+openapi: 3.0.1
+info:
+  title: Backdraft BBQ API
+  description: Add, retrieve, and delete menu items or gallery images for Backdraft BBQ website
+  license:
+    name: UNLICENSED
+  version: 1.0.0
+servers:
+- url: http://localhost:3000
+paths:
+  /menu_item:
+    get:
+      tags:
+      - menu_item
+      summary: Get all menu items
+      operationId: getMenuItems
+      responses:
+        201:
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MenuItem'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-swagger-router-controller: MenuItem
+    post:
+      tags:
+      - menu_item
+      summary: Adds a new menu item
+      operationId: addMenuItem
+      requestBody:
+        description: The menu item details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MenuItem'
+        required: true
+        x-name: body
+      responses:
+        201:
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MenuItem'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - Bearer: []
+      x-swagger-router-controller: MenuItem
+  /menu_item/{id}:
+    get:
+      tags:
+      - menu_item
+      summary: Get a menu item
+      operationId: getMenuItem
+      parameters:
+      - name: id
+        in: path
+        description: The id of the menu item to retrieve
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        201:
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MenuItem'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-swagger-router-controller: MenuItem
+    delete:
+      tags:
+      - menu_item
+      summary: Delete the specified menu item
+      operationId: deleteMenuitem
+      parameters:
+      - name: id
+        in: path
+        description: The id of the menu item to delete
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        201:
+          description: Success Response
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - Bearer: []
+      x-swagger-router-controller: MenuItem
+    patch:
+      tags:
+      - menu_item
+      summary: Edit a new menu item
+      operationId: editMenuItem
+      parameters:
+      - name: id
+        in: path
+        description: The id of the menu item to edit
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: The menu item details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MenuItem'
+        required: true
+        x-name: body
+      responses:
+        201:
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MenuItem'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - Bearer: []
+      x-swagger-router-controller: MenuItem
+  /gallery:
+    get:
+      tags:
+      - gallery
+      summary: Get all gallery iamges
+      operationId: getGalleryImages
+      responses:
+        201:
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GalleryImage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-swagger-router-controller: Gallery
+    post:
+      tags:
+      - gallery
+      summary: Adds a new gallery image
+      operationId: addGalleryImage
+      requestBody:
+        description: The gallery image
+        content:
+          image/png:
+            schema:
+              type: string
+              format: binary
+        required: true
+        x-name: body
+      responses:
+        201:
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GalleryImage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - Bearer: []
+      x-swagger-router-controller: Gallery
+  /gallery/{id}:
+    delete:
+      tags:
+      - gallery
+      summary: Delete the specified menu item
+      operationId: deleteGalleryImage
+      parameters:
+      - name: id
+        in: path
+        description: The id of the gallery image to delete
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        201:
+          description: Success Response
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - Bearer: []
+      x-swagger-router-controller: Gallery
+components:
+  schemas:
+    MenuItem:
+      required:
+      - category
+      - id
+      - price
+      - title
+      properties:
+        id:
+          type: string
+        price:
+          type: string
+        title:
+          type: string
+        category:
+          type: string
+          enum:
+          - appetizers
+          - sides
+          - breakfast
+          - kids
+          - baskets
+          - entrees
+          - beverages
+    GalleryImage:
+      required:
+      - id
+      - url
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+    Error:
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

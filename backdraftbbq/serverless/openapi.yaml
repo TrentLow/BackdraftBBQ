@@ -1,0 +1,268 @@
+openapi: 3.0.1
+info:
+  version: 1.0.0
+  title: Backdraft BBQ API
+  description: >-
+    Add, retrieve, and delete menu items or gallery images for Backdraft BBQ
+    website
+  license:
+    name: UNLICENSED
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /menu_item:
+    get:
+      summary: Get all menu items
+      operationId: getMenuItems
+      tags:
+        - menu_item
+      responses:
+        '201':
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MenuItem'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Adds a new menu item
+      operationId: addMenuItem
+      tags:
+        - menu_item
+      requestBody:
+        description: The menu item details
+        required: true
+        x-name: body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MenuItem'
+      responses:
+        '201':
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MenuItem'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - Bearer: []
+  '/menu_item/{id}':
+    get:
+      summary: Get a menu item
+      operationId: getMenuItem
+      tags:
+        - menu_item
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          description: The id of the menu item to retrieve
+          required: true
+      responses:
+        '201':
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MenuItem'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      summary: Edit a new menu item
+      operationId: editMenuItem
+      tags:
+        - menu_item
+      requestBody:
+        description: The menu item details
+        required: true
+        x-name: body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MenuItem'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          description: The id of the menu item to edit
+          required: true
+      responses:
+        '201':
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MenuItem'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - Bearer: []
+    delete:
+      summary: Delete the specified menu item
+      operationId: deleteMenuitem
+      tags:
+        - menu_item
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          description: The id of the menu item to delete
+          required: true
+      responses:
+        '201':
+          description: Success Response
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - Bearer: []
+  /gallery:
+    get:
+      summary: Get all gallery iamges
+      operationId: getGalleryImages
+      tags:
+        - gallery
+      responses:
+        '201':
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GalleryImage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Adds a new gallery image
+      operationId: addGalleryImage
+      tags:
+        - gallery
+      requestBody:
+        description: The gallery image
+        required: true
+        x-name: body
+        content:
+          image/png:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '201':
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GalleryImage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - Bearer: []
+  '/gallery/{id}':
+    delete:
+      summary: Delete the specified menu item
+      operationId: deleteGalleryImage
+      tags:
+        - gallery
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          description: The id of the gallery image to delete
+          required: true
+      responses:
+        '201':
+          description: Success Response
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - Bearer: []
+components:
+  securitySchemes:
+    Bearer:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+  schemas:
+    MenuItem:
+      required:
+        - id
+        - title
+        - price
+        - category
+      properties:
+        id:
+          type: string
+        price:
+          type: string
+        title:
+          type: string
+        category:
+          type: string
+          enum:
+            - appetizers
+            - sides
+            - breakfast
+            - kids
+            - baskets
+            - entrees
+            - beverages
+    GalleryImage:
+      required:
+        - id
+        - url
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

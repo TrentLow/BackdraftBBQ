@@ -1,0 +1,33 @@
+{
+  "name": "producerly-api",
+  "version": "1.0.0",
+  "description": "AWS lambda based API for producerly-app",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate": "npx sls openapi"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SlideWave/producerly-api.git"
+  },
+  "author": "SlideWave LLC",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/SlideWave/producerly-api/issues"
+  },
+  "homepage": "https://github.com/SlideWave/producerly-api#readme",
+  "dependencies": {
+    "aws-sdk": "^2.396.0",
+    "mysql2": "^1.6.4",
+    "sequelize": "^4.42.0",
+    "sequelize-cli": "^5.4.0",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "serverless": "^1.36.3",
+    "serverless-openapi-plugin": "git+https://github.com/jaumard/serverless-openapi-plugin.git",
+    "serverless-plugin-optimize": "^4.0.2-rc.1",
+    "serverless_swagger": "^1.0.3"
+  }
+}

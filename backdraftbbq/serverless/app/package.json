@@ -1,0 +1,27 @@
+{
+  "name": "backdraft-bbq-api",
+  "version": "1.0.0",
+  "description": "Add, retrieve, and delete menu items or gallery images for Backdraft BBQ website",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "swagger"
+  ],
+  "license": "Unlicense",
+  "private": true,
+  "dependencies": {
+    "js-yaml": "^3.3.0",
+    "mysql2": "^1.6.5",
+    "sequelize": "^5.8.2",
+    "sequelize-cli": "^5.4.0",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "oas-tools": "^2.1.3"
+  }
+}
