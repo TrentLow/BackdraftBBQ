@@ -60,30 +60,30 @@ exports.deleteMenuitem = function(id) {
  * id String The id of the menu item to edit
  * returns MenuItem
  **/
-exports.editMenuItem = function (body, id) {
-    return new Promise(function (resolve, reject) {
-        models.MenuItem.update(
-            {
-                title: body.title,
-                price: body.price,
-                category: body.category,
-            },
-            {
-                where: {
-                    id: id,
-                }
-            }
-        )
-            .then(affected => {
-                if (affected.length === 0) {
-                    reject();
-                } else {
-                    resolve();
-                }
-            })
-            .catch(err => reject(err));
-    });
-}
+exports.editMenuItem = function(body, id) {
+  return new Promise(function(resolve, reject) {
+    models.MenuItem.update(
+      {
+        title: body.title,
+        price: body.price,
+        category: body.category
+      },
+      {
+        where: {
+          id: id
+        }
+      }
+    )
+      .then(affected => {
+        if (affected.length === 0) {
+          reject();
+        } else {
+          resolve();
+        }
+      })
+      .catch(err => reject(err));
+  });
+};
 
 /**
  * Get a menu item
@@ -91,18 +91,23 @@ exports.editMenuItem = function (body, id) {
  * id String The id of the menu item to retrieve
  * returns MenuItem
  **/
-exports.getMenuItem = function (id) {
-    return new Promise(function (resolve, reject) {
-        models.MenuItem.findByPk(id)
-            .then(menuItem => {
-                if (!menuItem) {
-                    reject();
-                } else {
-                    resolve(menuItem);
-                }
-            })
-            .catch(err => reject(err));
-    });
+exports.getMenuItem = function(id) {
+  return new Promise(function(resolve, reject) {
+    models.MenuItem.findByPk(id)
+      .then(menuItem => {
+        if (!menuItem) {
+          reject();
+        } else {
+          resolve({
+            id: menuItem.id,
+            title: menuItem.title,
+            price: menuItem.price,
+            category: menuItem.category
+          });
+        }
+      })
+      .catch(err => reject(err));
+  });
 };
 
 /**
@@ -127,4 +132,3 @@ exports.getMenuItems = function() {
       .catch(err => reject(err));
   });
 };
-
