@@ -9,7 +9,7 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: "backdraft.auth0.com",
     clientID: "wel5Q5i3sc19pl4NtqhuO0AKOnoENpSQ",
-    redirectUri: "http://localhost:3000/callback",
+    redirectUri: `${window.origin}/callback`,
     responseType: "token id_token"
   });
 
