@@ -44,7 +44,7 @@ class App extends Component {
   }
   render() {
     return (
-      <Router history={history}>
+      <Router history={history}  basename="/">
         <div className="App">
           <Switch>
             <Route
