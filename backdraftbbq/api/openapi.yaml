@@ -8,6 +8,7 @@ info:
   license:
     name: UNLICENSED
 servers:
+  - url: 'https://n9p2eki06e.execute-api.us-east-1.amazonaws.com/dev/'
   - url: 'http://localhost:3000'
 paths:
   /menu_item:
