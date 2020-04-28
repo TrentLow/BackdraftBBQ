@@ -7,7 +7,7 @@ import About from "./components/About";
 import MenuItemApi from "./generated/src/api/MenuItemApi.js";
 import AddMenuItem from "./components/addmenuitem";
 import AddImg from "./components/addimage";
-import { HashRouter , Route, Switch, Redirect } from "react-router-dom";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
 import Gallery from "./components/Gallery";
 import GalleryApi from "./generated/src/api/GalleryApi";
 import Auth from "./Auth";
@@ -15,7 +15,7 @@ import Callback from "./Callback";
 import createHistory from "history/createBrowserHistory";
 
 const history = createHistory({
-	 basename: process.env.PUBLIC_URL
+  basename: process.env.PUBLIC_URL
 });
 
 const auth = new Auth(history);
@@ -46,7 +46,7 @@ class App extends Component {
   }
   render() {
     return (
-      <HashRouter history={history}>
+      <Router history={history}>
         <div className="App">
           <Switch>
             <Route
@@ -91,7 +91,7 @@ class App extends Component {
             />
           </Switch>
         </div>
-      </HashRouter>
+      </Router>
     );
   }
 }
