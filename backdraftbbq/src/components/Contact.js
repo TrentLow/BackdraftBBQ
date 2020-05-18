@@ -17,7 +17,7 @@ const Contact = props => (
       }}
     >
       <p>Business Hours:</p>
-      <p>Monday-Thursday: 7am/8pm Friday-Saturday: 7am/9pm</p>
+      <p>Monday-Thursday: 11am/8pm Friday-Saturday: 11am/9pm</p>
       <p>We would love to hear from you! Remember we do carry out!</p>
       <p>Contact us so we can get in touch about your catering needs!!</p>
       <PhoneNumber number="(701)-453-3452" />
