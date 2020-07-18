@@ -22,9 +22,7 @@ const Navbar = props => (
             Side Orders
           </a>
           <br />
-          <a href="#breakfast" className="nav-link">
-            Breakfast
-          </a>
+ 
           <br />
           <a href="#kidsmenu" className="nav-link">
             Kids Menu
