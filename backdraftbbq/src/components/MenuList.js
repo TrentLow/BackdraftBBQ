@@ -33,12 +33,7 @@ const MenuList = props => (
       menuItems={props.menuItems.filter(item => item.category === "sides")}
       authenticated={props.authenticated}
     />
-    <MenuCategory
-      name="Breakfast"
-      id="breakfast"
-      menuItems={props.menuItems.filter(item => item.category === "breakfast")}
-      authenticated={props.authenticated}
-    />
+ 
     <MenuCategory
       name="Kids Menu"
       id="kidsmenu"
